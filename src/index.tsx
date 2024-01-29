@@ -1,6 +1,11 @@
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import './firebase';
+
+import 'bulma';
+
+import '@fortawesome/fontawesome-free/css/all.css';
 
 import './index.scss';
 import { App } from './App';
