@@ -1,5 +1,6 @@
-/* eslint-disable*/
+/* eslint-disable import/no-extraneous-dependencies */
 import { initializeApp } from 'firebase/app';
+import 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

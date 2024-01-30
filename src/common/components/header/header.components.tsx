@@ -1,11 +1,17 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import classnames from 'classnames';
 import { NavLink } from 'react-router-dom';
+
 import { Container } from '../container/container.component';
+import { useAuth } from '../../../hooks/useAuth';
+import { removeUser } from '../../../store/slices/user.slice';
 
 export const Header: React.FC = () => {
+  const { isAuth } = useAuth();
   const [isMenuActive, setIsMenuActive] = useState(false);
+  const dispach = useDispatch();
 
   const navLinkActive = (
     isActive: boolean,
@@ -16,6 +22,10 @@ export const Header: React.FC = () => {
       [classActive]: isActive,
     }));
 
+  const handleLockout = () => {
+    dispach(removeUser());
+  };
+
   return (
     <header className="header box">
       <Container>
@@ -25,7 +35,7 @@ export const Header: React.FC = () => {
               to="/"
               className="navbar-item has-text-primary has-text-weight-bold"
             >
-              conduit
+              channel
             </NavLink>
 
             <button
@@ -57,23 +67,36 @@ export const Header: React.FC = () => {
               </NavLink>
 
               <div className="buttons navbar-item">
-                <NavLink
-                  to="/signup"
-                  className={({ isActive }) => (
-                    navLinkActive(isActive, 'button is-primary', 'is-light')
-                  )}
-                >
-                  <strong>Sign up</strong>
-                </NavLink>
 
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) => (
-                    navLinkActive(isActive, 'button is-light')
-                  )}
-                >
-                  Log in
-                </NavLink>
+                {isAuth ? (
+                  <button
+                    type="button"
+                    className="button"
+                    onClick={handleLockout}
+                  >
+                    Log out
+                  </button>
+                ) : (
+                  <>
+                    <NavLink
+                      to="/signup"
+                      className={({ isActive }) => (
+                        navLinkActive(isActive, 'button is-primary', 'is-light')
+                      )}
+                    >
+                      <strong>Sign up</strong>
+                    </NavLink>
+
+                    <NavLink
+                      to="/login"
+                      className={({ isActive }) => (
+                        navLinkActive(isActive, 'button is-light')
+                      )}
+                    >
+                      Log in
+                    </NavLink>
+                  </>
+                )}
               </div>
             </div>
           </div>

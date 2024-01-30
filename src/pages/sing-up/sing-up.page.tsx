@@ -1,20 +1,20 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 import { Container }
   from '../../common/components/container/container.component';
-import { LoginFrom } from './components/login-form';
+import { SingUpForm } from './components/sing-up-form';
 import { setUser } from '../../store/slices/user.slice';
 
-export const Login: React.FC = () => {
+export const SingUp: React.FC = () => {
   const dispach = useDispatch();
   const navigate = useNavigate();
 
-  const handlelogin = (email: string, password: string) => {
-    signInWithEmailAndPassword(getAuth(), email, password)
+  const handleRegister = (email: string, password: string) => {
+    createUserWithEmailAndPassword(getAuth(), email, password)
       .then(({ user }) => {
         dispach(setUser({
           email: user.email,
@@ -32,7 +32,7 @@ export const Login: React.FC = () => {
     <Container>
       <section className="section columns is-centered">
         <div className="column is-half">
-          <LoginFrom handleSubmit={handlelogin} />
+          <SingUpForm handleSubmit={handleRegister} />
         </div>
       </section>
     </Container>

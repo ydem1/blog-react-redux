@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Header } from './common/components/header/header.components';
 import { Home } from './pages/home/home.page';
 import { Login } from './pages/login/login.page';
+import { SingUp } from './pages/sing-up/sing-up.page';
 
 export const App: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ export const App: React.FC = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SingUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>
