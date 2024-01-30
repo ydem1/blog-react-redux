@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import classnames from 'classnames';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { Container } from '../container/container.component';
 import { useAuth } from '../../../hooks/useAuth';
@@ -12,6 +12,7 @@ export const Header: React.FC = () => {
   const { isAuth } = useAuth();
   const [isMenuActive, setIsMenuActive] = useState(false);
   const dispach = useDispatch();
+  const navigate = useNavigate();
 
   const navLinkActive = (
     isActive: boolean,
@@ -24,6 +25,7 @@ export const Header: React.FC = () => {
 
   const handleLockout = () => {
     dispach(removeUser());
+    navigate('/login');
   };
 
   return (
@@ -69,13 +71,24 @@ export const Header: React.FC = () => {
               <div className="buttons navbar-item">
 
                 {isAuth ? (
-                  <button
-                    type="button"
-                    className="button"
-                    onClick={handleLockout}
-                  >
-                    Log out
-                  </button>
+                  <>
+                    <NavLink
+                      to="/user"
+                      className={({ isActive }) => (
+                        navLinkActive(isActive, 'button is-primary', 'is-light')
+                      )}
+                    >
+                      <i className="fa-solid fa-user" />
+                    </NavLink>
+
+                    <button
+                      type="button"
+                      className="button"
+                      onClick={handleLockout}
+                    >
+                      Log out
+                    </button>
+                  </>
                 ) : (
                   <>
                     <NavLink
