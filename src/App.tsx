@@ -5,7 +5,7 @@ import { Header } from './common/components/header/header.components';
 import { Home } from './pages/home/home.page';
 import { Login } from './pages/login/login.page';
 import { SingUp } from './pages/sing-up/sing-up.page';
-import { UserPage } from './pages/user/user.apge';
+import { UserPage } from './pages/user/user.page';
 
 export const App: React.FC = () => {
   return (
