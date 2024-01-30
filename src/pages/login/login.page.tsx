@@ -31,7 +31,10 @@ export const Login: React.FC = () => {
   return (
     <Container>
       <section className="section columns is-centered">
-        <div className="column is-half">
+        <div className="column is-half box">
+          <h1 className="has-text-primary has-text-centered title is-3 m-4">
+            Log in
+          </h1>
           <LoginFrom handleSubmit={handlelogin} />
         </div>
       </section>

@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { initializeApp } from 'firebase/app';
-import 'firebase/auth';
+import { getFirestore } from 'firebase/firestore'; // Correct import path
+import { GoogleAuthProvider } from 'firebase/auth'; // Correct import path
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -12,3 +13,5 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
+export const firestore = getFirestore(app);
+export const provider = new GoogleAuthProvider();

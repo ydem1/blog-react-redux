@@ -71,7 +71,7 @@ export const SingUpForm: React.FC<Props> = ({ handleSubmit }) => {
 
   return (
     <form
-      className="form box"
+      className="form m-6"
       onSubmit={(event) => handleClickSubmit(event)}
     >
       <FiledInput
